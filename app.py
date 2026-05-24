@@ -12,19 +12,21 @@ def load_data():
 
 try:
     df = load_data()
-    # કોલમના નામમાં કોઈ વધારાની જગ્યા (Space) ન હોય તે તપાસો
+    # કોલમના નામમાંથી વધારાની જગ્યા દૂર કરવા
     df.columns = df.columns.str.strip()
+    
+    # તપાસો કે શીટમાં કયા કોલમ છે
+    st.write("સીટમાં ઉપલબ્ધ કોલમ:", df.columns.tolist())
     
     user_family_code = st.text_input("તમારો ફેમિલી કોડ દાખલ કરો:")
     
     if user_family_code:
-        # ફેમિલી કોડ વડે ફિલ્ટર કરો
+        # ફેમિલી કોડ વડે ફિલ્ટર (અહીં 'Family_Code' ની જગ્યાએ જે કોલમનું નામ તમારા લિસ્ટમાં દેખાય તે વાપરવું)
         filtered_df = df[df['Family_Code'].astype(str) == user_family_code]
         
         if not filtered_df.empty:
             st.dataframe(filtered_df)
         else:
             st.warning("આ ફેમિલી કોડ સાથે કોઈ સભ્ય મળ્યા નથી.")
-            
 except Exception as e:
-    st.error(f"માહિતી લોડ કરવામાં સમસ્યા છે: {e}")
+    st.error(f"એરર: {e}")

@@ -2,50 +2,54 @@ import streamlit as st
 import pandas as pd
 
 # ૧. પેજ સેટઅપ
-st.set_page_config(page_title="Lohana Clic", layout="wide", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="Lohana Clic", layout="wide")
 
-# ૨. સ્ટાઈલિંગ
-st.markdown("""
-    <style>
-    .title { text-align: center; color: #ff8200; font-weight: bold; }
-    .search-box { padding: 20px; border-radius: 10px; border: 1px solid #ccc; }
-    </style>
-""", unsafe_allow_html=True)
-
-# ૩. ડેટા લોડિંગ
+# ૨. ડેટા લોડિંગ
 @st.cache_data
 def load_data():
     df = pd.read_csv("data.csv")
     df.columns = df.columns.str.strip()
     return df
 
-try:
-    df = load_data()
-    
-    st.markdown("<h1 class='title'>Lohana Clic</h1>", unsafe_allow_html=True)
+df = load_data()
 
-    # ૪. સર્ચ બાર
-    search_query = st.text_input("🔍 Type a letter or city name to search:")
+st.markdown("<h1 style='text-align: center; color: #ff8200;'>Lohana Clic</h1>", unsafe_allow_html=True)
 
-    # ૫. ડાયનેમિક ફિલ્ટરિંગ
-    if search_query:
-        # પિનકોડ હોય તો પિનકોડથી, નહીંતર સિટીના નામથી સર્ચ
-        if search_query.isdigit():
-            filtered_df = df[df['Pincode'].astype(str).str.contains(search_query, na=False)]
-        else:
-            filtered_df = df[df['City'].str.contains(search_query, case=False, na=False)]
-        
-        if not filtered_df.empty:
-            st.write(f"### Results for '{search_query}':")
-            # રિઝલ્ટ કાર્ડ્સ
-            for _, row in filtered_df.iterrows():
-                with st.container(border=True):
-                    st.subheader(row['Sub Category'])
-                    st.write(f"📍 City: {row['City']}")
-        else:
-            st.info("No results found. Try another spelling.")
+# ૩. Category વિભાગ (હંમેશા ફિક્સ રહેશે)
+st.subheader("📂 Select Business Category")
+col1, col2 = st.columns(2)
+main_cat = col1.selectbox("Main Category", ["All"] + df['Main Category'].unique().tolist())
+sub_cat_list = df[df['Main Category'] == main_cat]['Sub Category'].unique().tolist() if main_cat != "All" else df['Sub Category'].unique().tolist()
+sub_cat = col2.selectbox("Sub Category", ["All"] + sorted(sub_cat_list))
+
+st.write("---")
+
+# ૪. Location/Search વિભાગ (અહીં તમે સર્ચ કરશો)
+st.subheader("📍 Search by City or Pincode")
+search_input = st.text_input("Type Pincode or City name...")
+
+# ૫. ફિલ્ટર લોજિક
+filtered_df = df.copy()
+
+# Category ફિલ્ટર
+if main_cat != "All":
+    filtered_df = filtered_df[filtered_df['Main Category'] == main_cat]
+if sub_cat != "All":
+    filtered_df = filtered_df[filtered_df['Sub Category'] == sub_cat]
+
+# Location ફિલ્ટર
+if search_input:
+    if search_input.isdigit():
+        filtered_df = filtered_df[filtered_df['Pincode'].astype(str).str.contains(search_input, na=False)]
     else:
-        st.write("Start typing to explore business in your area...")
+        filtered_df = filtered_df[filtered_df['City'].str.contains(search_input, case=False, na=False)]
 
-except FileNotFoundError:
-    st.error("Error: 'data.csv' file not found. Please upload it.")
+# રિઝલ્ટ બતાવવાનું લોજિક
+if not filtered_df.empty:
+    st.write(f"### Found {len(filtered_df)} results:")
+    for _, row in filtered_df.iterrows():
+        with st.container(border=True):
+            st.write(f"**Business:** {row['Sub Category']}")
+            st.write(f"**City:** {row['City']} | **Category:** {row['Main Category']}")
+else:
+    st.info("Please select category or enter location to see results.")

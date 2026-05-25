@@ -1,66 +1,55 @@
 import streamlit as st
 import pandas as pd
 
-# ૧. પેજ સેટઅપ
-st.set_page_config(page_title="Lohana Clic", layout="wide")
-
-# ૨. કસ્ટમ CSS (કાર્ડ્સને સુંદર બનાવવા માટે)
-st.markdown("""
-    <style>
-    .business-card { padding: 15px; border-radius: 10px; border: 1px solid #ddd; margin-bottom: 10px; background-color: #f9f9f9; }
-    </style>
-""", unsafe_allow_html=True)
-
-# ૩. ડેટા લોડિંગ
+# ૧. ડેટા લોડિંગ
 @st.cache_data
 def load_data():
     df = pd.read_csv("data.csv")
     df.columns = df.columns.str.strip()
     df['Main Category'] = df['Main Category'].ffill()
-    df['City'] = df['City'].fillna('Ahmedabad') # ડિફોલ્ટ શહેર
-    return df
+    
+    # લોકેશન ફાઈલ લોડ કરો
+    loc_df = pd.read_csv("location_data.csv")
+    loc_df.columns = loc_df.columns.str.strip()
+    return df, loc_df
 
-df = load_data()
+df, loc_df = load_data()
 
 st.image("logo.png", width=200)
 st.subheader("🔍 વ્યવસાય શોધો")
 
-# ૪. સર્ચ ડ્રોપડાઉન
+# ૨. લોકેશન ડ્રોપડાઉન (ઓટોમેટિક લિસ્ટ)
+st.subheader("📍 લોકેશન પસંદ કરો")
 c1, c2, c3 = st.columns(3)
 
-# શહેર ડ્રોપડાઉન
-city = c3.selectbox("શહેર", ["Select"] + sorted(df['City'].unique().tolist()))
+# સ્ટેટ -> ડિસ્ટ્રિક્ટ -> તાલુકા ઓટોમેટિક આવશે
+state = c1.selectbox("રાજ્ય", ["Select"] + loc_df['State'].unique().tolist())
+districts = ["Select"]
+if state != "Select":
+    districts += loc_df[loc_df['State'] == state]['District'].unique().tolist()
+district = c2.selectbox("જિલ્લો", districts)
 
-# મેઈન કેટેગરી
-main_options = ["Select"] + df['Main Category'].unique().tolist()
-main_cat = c1.selectbox("મેઈન કેટેગરી", main_options)
+talukas = ["Select"]
+if district != "Select":
+    talukas += loc_df[(loc_df['District'] == district)]['Taluka'].unique().tolist()
+taluka = c3.selectbox("તાલુકો (City)", talukas)
 
-# સબ-કેટેગરી
-sub_cats = []
-if main_cat != "Select":
-    sub_cats = df[df['Main Category'] == main_cat]['Sub Category'].dropna().unique().tolist()
-sub_cat = c2.selectbox("સબ-કેટેગરી", ["Select"] + sub_cats)
+# ૩. કેટેગરી
+main_cat = st.selectbox("મેઈન કેટેગરી", ["Select"] + df['Main Category'].unique().tolist())
 
-# ૫. સર્ચ રિઝલ્ટ (Justdial સ્ટાઈલ કાર્ડ્સ)
+# ૪. સર્ચ લોજિક
 if st.button("સર્ચ કરો"):
-    if main_cat == "Select" or sub_cat == "Select":
-        st.warning("કૃપા કરીને કેટેગરી સિલેક્ટ કરો.")
+    if taluka == "Select" or main_cat == "Select":
+        st.warning("કૃપા કરીને લોકેશન અને કેટેગરી સિલેક્ટ કરો.")
     else:
-        filtered = df[(df['Main Category'] == main_cat) & (df['Sub Category'] == sub_cat)]
-        if city != "Select":
-            filtered = filtered[filtered['City'] == city]
-
+        # લોકેશન અને કેટેગરી મુજબ ડેટા ફિલ્ટર
+        filtered = df[(df['Main Category'] == main_cat)]
+        
+        st.write(f"### {taluka} માં રિઝલ્ટ:")
         if not filtered.empty:
-            st.write(f"### {len(filtered)} પરિણામો મળ્યા:")
             for index, row in filtered.iterrows():
-                # સુંદર કાર્ડ બનાવવા માટે
-                st.markdown(f"""
-                <div class="business-card">
-                    <h4>{row['Sub Category']}</h4>
-                    <p>📍 શહેર: {row['City']}</p>
-                </div>
-                """, unsafe_allow_html=True)
-                if st.button("સંપર્ક કરો", key=f"btn_{index}"):
-                    st.toast("સંપર્ક વિગત: 98XXXXXX00") # અહીં તમે નંબર ઉમેરી શકો
+                with st.container(border=True):
+                    st.write(f"**{row['Sub Category']}**")
+                    st.write(f"📍 સ્થળ: {taluka}")
         else:
-            st.info("ક્ષમા કરશો, કોઈ ડેટા મળ્યો નથી.")
+            st.info("કોઈ ડેટા મળ્યો નથી.")

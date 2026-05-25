@@ -3,7 +3,7 @@ import streamlit as st
 # પેજ સેટઅપ
 st.set_page_config(page_title="Lohana Clic", layout="wide")
 
-# કસ્ટમ CSS (બટન અને ડિઝાઇન માટે)
+# કસ્ટમ CSS
 st.markdown("""
     <style>
     .stButton>button {
@@ -21,12 +21,10 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# હેડર: મોટો લોગો
+# હેડર: ફક્ત લોગો (નામ કાઢી નાખ્યું છે)
 col1, col2 = st.columns([1, 10])
 with col1:
-    st.image("logo.png", width=200) # અહીં સાઈઝ મોટી કરી છે
-with col2:
-    st.title("🚩 લોહાણા ક્લિક")
+    st.image("logo.png", width=200)
 
 # સર્ચ બાર
 st.text_input("", placeholder="🔍 પ્રોડક્ટ્સ અને સર્વિસ શોધો...")

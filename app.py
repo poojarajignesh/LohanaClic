@@ -1,10 +1,10 @@
 import streamlit as st
 import pandas as pd
 
-# ૧. પેજ સેટઅપ
-st.set_page_config(page_title="Lohana Clic", layout="wide", page_initial_sidebar_state="collapsed")
+# ૧. પેજ સેટઅપ (અહીં સુધારો કર્યો છે)
+st.set_page_config(page_title="Lohana Clic", layout="wide", initial_sidebar_state="collapsed")
 
-# ૨. કસ્ટમ CSS (સર્ચ બારને સુંદર બનાવવા માટે)
+# ૨. કસ્ટમ CSS
 st.markdown("""
     <style>
     .main-title { text-align: center; font-size: 40px; color: #ff8200; font-weight: bold; margin-bottom: 30px; }
@@ -31,13 +31,14 @@ df = load_data()
 st.markdown("<div class='main-title'>Lohana Clic</div>", unsafe_allow_html=True)
 
 if df is not None:
-    # સર્ચ બાર કન્ટેનર
     with st.container():
         st.markdown("<div class='search-box'>", unsafe_allow_html=True)
         c1, c2, c3 = st.columns(3)
         
+        # ડ્રોપડાઉન
         city = c1.selectbox("📍 શહેર", ["Select"] + sorted(df['City'].unique().tolist()))
         main_cat = c2.selectbox("📂 કેટેગરી", ["Select"] + df['Main Category'].unique().tolist())
+        
         sub_cats = []
         if main_cat != "Select":
             sub_cats = df[df['Main Category'] == main_cat]['Sub Category'].dropna().unique().tolist()
@@ -46,7 +47,7 @@ if df is not None:
         search_btn = st.button("🔍 સર્ચ કરો")
         st.markdown("</div>", unsafe_allow_html=True)
 
-    # ૫. સર્ચ રિઝલ્ટ (માત્ર બટન દબાવ્યા પછી જ દેખાશે)
+    # ૫. સર્ચ રિઝલ્ટ
     if search_btn:
         if main_cat == "Select" or sub_cat == "Select":
             st.warning("⚠️ કૃપા કરીને કેટેગરી અને સબ-કેટેગરી પસંદ કરો.")
@@ -64,4 +65,4 @@ if df is not None:
             else:
                 st.info("સૂચના: આ ફિલ્ટર માટે કોઈ બિઝનેસ મળ્યો નથી.")
 else:
-    st.error("ડેટા ફાઈલ મળી નથી. કૃપા કરીને 'data.csv' ચેક કરો.")
+    st.error("ડેટા ફાઈલ મળી નથી. 'data.csv' ચેક કરો.")

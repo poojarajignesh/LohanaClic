@@ -20,47 +20,47 @@ st.markdown("""
 def load_data():
     df = pd.read_csv("data.csv")
     df.columns = df.columns.str.strip()
-    df['Main Category'] = df['Main Category'].ffill()
-    df['City'] = df['City'].fillna('Ahmedabad')
-    return df
+    # Pincode file load
+    pin_df = pd.read_csv("pincode.csv")
+    pin_df.columns = pin_df.columns.str.strip()
+    return df, pin_df
 
-df = load_data()
+df, pin_df = load_data()
 
-# 4. Main UI
+# 4. UI
 st.markdown("<h1 class='title'>Lohana Clic</h1>", unsafe_allow_html=True)
-st.write("<br>", unsafe_allow_html=True)
 
 with st.container():
     st.markdown("<div class='search-section'>", unsafe_allow_html=True)
-    c1, c2, c3 = st.columns(3)
-    
-    # Location (City) selection
-    city = c1.selectbox("📍 Select Location", ["Select"] + sorted(df['City'].unique().tolist()))
-    
-    # Category selection
-    main_cat = c2.selectbox("📂 Select Category", ["Select"] + df['Main Category'].unique().tolist())
-    
-    # Sub-Category selection
-    sub_cats = df[df['Main Category'] == main_cat]['Sub Category'].dropna().unique().tolist() if main_cat != "Select" else []
-    sub_cat = c3.selectbox("🔍 Select Sub-Category", ["Select"] + sub_cats)
-    
+    search_input = st.text_input("📍 Enter Pincode or City Name")
     search_btn = st.button("Search Business")
     st.markdown("</div>", unsafe_allow_html=True)
 
-# 5. Results Section
-if search_btn:
-    if main_cat == "Select" or sub_cat == "Select":
-        st.warning("Please select both Category and Sub-Category to search.")
+# 5. Search Logic
+if search_btn and search_input:
+    location_filter = None
+    
+    # Check if input is Pincode (Digit)
+    if search_input.isdigit():
+        pincode_val = int(search_input)
+        match = pin_df[pin_df['pincode'] == pincode_val]
+        if not match.empty:
+            location_filter = match.iloc[0]['district'].upper()
+            st.success(f"Searching in: {location_filter} (from Pincode)")
+        else:
+            st.error("Invalid Pincode!")
     else:
-        filtered = df[(df['Main Category'] == main_cat) & (df['Sub Category'] == sub_cat)]
-        if city != "Select":
-            filtered = filtered[filtered['City'] == city]
+        location_filter = search_input.upper()
+    
+    if location_filter:
+        # Filter data.csv based on the city/district
+        filtered = df[df['City'].str.upper().str.contains(location_filter, na=False)]
         
         if not filtered.empty:
-            st.write(f"### {len(filtered)} results found")
+            st.write(f"### {len(filtered)} results found for {location_filter}")
             for _, row in filtered.iterrows():
                 with st.container(border=True):
                     st.write(f"### {row['Sub Category']}")
                     st.write(f"**City:** {row['City']}")
         else:
-            st.info("No business found. Please try different filters.")
+            st.info("No business found for this location.")

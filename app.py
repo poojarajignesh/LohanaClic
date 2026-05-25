@@ -1,55 +1,67 @@
 import streamlit as st
 import pandas as pd
 
-# ૧. ડેટા લોડિંગ
+# ૧. પેજ સેટઅપ
+st.set_page_config(page_title="Lohana Clic", layout="wide", page_initial_sidebar_state="collapsed")
+
+# ૨. કસ્ટમ CSS (સર્ચ બારને સુંદર બનાવવા માટે)
+st.markdown("""
+    <style>
+    .main-title { text-align: center; font-size: 40px; color: #ff8200; font-weight: bold; margin-bottom: 30px; }
+    .search-box { background-color: #f0f2f6; padding: 25px; border-radius: 15px; }
+    .stButton>button { width: 100%; height: 45px; background-color: #ff8200; color: white; font-weight: bold; }
+    </style>
+""", unsafe_allow_html=True)
+
+# ૩. ડેટા લોડિંગ
 @st.cache_data
 def load_data():
-    df = pd.read_csv("data.csv")
-    df.columns = df.columns.str.strip()
-    df['Main Category'] = df['Main Category'].ffill()
-    
-    # લોકેશન ફાઈલ લોડ કરો
-    loc_df = pd.read_csv("location_data.csv")
-    loc_df.columns = loc_df.columns.str.strip()
-    return df, loc_df
+    try:
+        df = pd.read_csv("data.csv")
+        df.columns = df.columns.str.strip()
+        df['Main Category'] = df['Main Category'].ffill()
+        df['City'] = df['City'].fillna('Ahmedabad')
+        return df
+    except:
+        return None
 
-df, loc_df = load_data()
+df = load_data()
 
-st.image("logo.png", width=200)
-st.subheader("🔍 વ્યવસાય શોધો")
+# ૪. હોમ પેજ લેઆઉટ
+st.markdown("<div class='main-title'>Lohana Clic</div>", unsafe_allow_html=True)
 
-# ૨. લોકેશન ડ્રોપડાઉન (ઓટોમેટિક લિસ્ટ)
-st.subheader("📍 લોકેશન પસંદ કરો")
-c1, c2, c3 = st.columns(3)
-
-# સ્ટેટ -> ડિસ્ટ્રિક્ટ -> તાલુકા ઓટોમેટિક આવશે
-state = c1.selectbox("રાજ્ય", ["Select"] + loc_df['State'].unique().tolist())
-districts = ["Select"]
-if state != "Select":
-    districts += loc_df[loc_df['State'] == state]['District'].unique().tolist()
-district = c2.selectbox("જિલ્લો", districts)
-
-talukas = ["Select"]
-if district != "Select":
-    talukas += loc_df[(loc_df['District'] == district)]['Taluka'].unique().tolist()
-taluka = c3.selectbox("તાલુકો (City)", talukas)
-
-# ૩. કેટેગરી
-main_cat = st.selectbox("મેઈન કેટેગરી", ["Select"] + df['Main Category'].unique().tolist())
-
-# ૪. સર્ચ લોજિક
-if st.button("સર્ચ કરો"):
-    if taluka == "Select" or main_cat == "Select":
-        st.warning("કૃપા કરીને લોકેશન અને કેટેગરી સિલેક્ટ કરો.")
-    else:
-        # લોકેશન અને કેટેગરી મુજબ ડેટા ફિલ્ટર
-        filtered = df[(df['Main Category'] == main_cat)]
+if df is not None:
+    # સર્ચ બાર કન્ટેનર
+    with st.container():
+        st.markdown("<div class='search-box'>", unsafe_allow_html=True)
+        c1, c2, c3 = st.columns(3)
         
-        st.write(f"### {taluka} માં રિઝલ્ટ:")
-        if not filtered.empty:
-            for index, row in filtered.iterrows():
-                with st.container(border=True):
-                    st.write(f"**{row['Sub Category']}**")
-                    st.write(f"📍 સ્થળ: {taluka}")
+        city = c1.selectbox("📍 શહેર", ["Select"] + sorted(df['City'].unique().tolist()))
+        main_cat = c2.selectbox("📂 કેટેગરી", ["Select"] + df['Main Category'].unique().tolist())
+        sub_cats = []
+        if main_cat != "Select":
+            sub_cats = df[df['Main Category'] == main_cat]['Sub Category'].dropna().unique().tolist()
+        sub_cat = c3.selectbox("🔍 સબ-કેટેગરી", ["Select"] + sub_cats)
+        
+        search_btn = st.button("🔍 સર્ચ કરો")
+        st.markdown("</div>", unsafe_allow_html=True)
+
+    # ૫. સર્ચ રિઝલ્ટ (માત્ર બટન દબાવ્યા પછી જ દેખાશે)
+    if search_btn:
+        if main_cat == "Select" or sub_cat == "Select":
+            st.warning("⚠️ કૃપા કરીને કેટેગરી અને સબ-કેટેગરી પસંદ કરો.")
         else:
-            st.info("કોઈ ડેટા મળ્યો નથી.")
+            filtered = df[(df['Main Category'] == main_cat) & (df['Sub Category'] == sub_cat)]
+            if city != "Select":
+                filtered = filtered[filtered['City'] == city]
+            
+            if not filtered.empty:
+                st.write(f"### 📍 {len(filtered)} પરિણામો મળ્યા:")
+                for index, row in filtered.iterrows():
+                    with st.container(border=True):
+                        st.subheader(row['Sub Category'])
+                        st.write(f"**શહેર:** {row['City']}")
+            else:
+                st.info("સૂચના: આ ફિલ્ટર માટે કોઈ બિઝનેસ મળ્યો નથી.")
+else:
+    st.error("ડેટા ફાઈલ મળી નથી. કૃપા કરીને 'data.csv' ચેક કરો.")

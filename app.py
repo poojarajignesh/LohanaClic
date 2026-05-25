@@ -1,32 +1,34 @@
 import streamlit as st
-import pandas as pd
 
-# તમારી CSV લિંક
-SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR0PbPYpqGEfCH3hpyN95F5Mv7UGOYnaokIpqphhO7RCesuqXjDjW8B6h3PjqTRPqQXI5qi8O6gRWlN/pub?gid=0&single=true&output=csv"
+st.header("📋 Lohana Samaj Databank Registration")
 
-st.title("🚩 લોહાણા સમાજ ડિરેક્ટરી")
-
-@st.cache_data
-def load_data():
-    return pd.read_csv(SHEET_URL)
-
-try:
-    df = load_data()
-    # કોલમના નામમાંથી વધારાની જગ્યા દૂર કરવા
-    df.columns = df.columns.str.strip()
+with st.form("main_form"):
+    # Personal Info
+    st.subheader("Personal Information")
+    name = st.text_input("Puru Naam")
+    dob = st.date_input("Janm Tarikh")
+    education = st.text_input("Shikshan (Education)")
     
-    # તપાસો કે શીટમાં કયા કોલમ છે
-    st.write("સીટમાં ઉપલબ્ધ કોલમ:", df.columns.tolist())
+    # Contact
+    st.subheader("Contact Details")
+    mobile = st.text_input("Mobile Number")
+    whatsapp = st.text_input("WhatsApp Number")
+    address = st.text_area("Address")
     
-    user_family_code = st.text_input("તમારો ફેમિલી કોડ દાખલ કરો:")
+    # Professional
+    st.subheader("Business / Service Details")
+    occupation = st.text_input("Vyavsay / Job Profile")
+    business_name = st.text_input("Business Name")
     
-    if user_family_code:
-        # ફેમિલી કોડ વડે ફિલ્ટર (અહીં 'Family_Code' ની જગ્યાએ જે કોલમનું નામ તમારા લિસ્ટમાં દેખાય તે વાપરવું)
-        filtered_df = df[df['Family_Code'].astype(str) == user_family_code]
-        
-        if not filtered_df.empty:
-            st.dataframe(filtered_df)
-        else:
-            st.warning("આ ફેમિલી કોડ સાથે કોઈ સભ્ય મળ્યા નથી.")
-except Exception as e:
-    st.error(f"એરર: {e}")
+    # Matrimony/Blood Group
+    col1, col2 = st.columns(2)
+    with col1:
+        blood_group = st.selectbox("Blood Group", ["A+", "B+", "AB+", "O+", "A-", "B-", "AB-", "O-"])
+    with col2:
+        marital_status = st.selectbox("Marital Status", ["Unmarried", "Married"])
+    
+    submit = st.form_submit_button("Submit Data")
+
+    if submit:
+        # Aahi tame Google Sheet ma data mokalvano code muki shaksho
+        st.success("Tari vigat sachalai gai che!")

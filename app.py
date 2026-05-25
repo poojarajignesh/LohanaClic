@@ -1,59 +1,59 @@
 import streamlit as st
 import pandas as pd
 
-# ૧. પેજ સેટઅપ
+# 1. Page Setup
 st.set_page_config(page_title="Lohana Clic", layout="wide")
 
-# ૨. ડેટા લોડિંગ
+# 2. Data Loading
 @st.cache_data
 def load_data():
     try:
         df = pd.read_csv("data.csv")
         df.columns = df.columns.str.strip()
         df['Main Category'] = df['Main Category'].ffill()
-        
-        loc_df = pd.read_csv("location_data.csv")
-        loc_df.columns = loc_df.columns.str.strip()
-        return df, loc_df
+        return df
     except:
-        return None, None
+        return None
 
-df, loc_df = load_data()
+df = load_data()
+
+# 3. Simple Location Dictionary (India na mukhya districts)
+# Tame aa ma vadhare add kari shako
+locations = {
+    "Gujarat": {
+        "Ahmedabad": ["Ahmedabad City", "Sanand", "Dholka"],
+        "Rajkot": ["Rajkot City", "Gondal", "Jetpur"],
+        "Surat": ["Surat City", "Olpad", "Bardoli"]
+    },
+    "Maharashtra": {
+        "Mumbai": ["Mumbai City", "Mumbai Suburban"],
+        "Pune": ["Pune City", "Haveli"]
+    }
+}
 
 st.image("logo.png", width=200)
-st.subheader("🔍 વ્યવસાય શોધો")
+st.subheader("🔍 Vyavasay Shodho")
 
-if df is not None and loc_df is not None:
-    # --- લોકેશન સિલેક્શન ---
-    st.subheader("📍 લોકેશન પસંદ કરો")
+if df is not None:
+    # Location Selection
     l1, l2, l3 = st.columns(3)
+    state = l1.selectbox("State", ["Select"] + list(locations.keys()))
     
-    state = l1.selectbox("રાજ્ય", loc_df['State'].unique().tolist())
-    districts = loc_df[loc_df['State'] == state]['District'].unique().tolist()
-    district = l2.selectbox("જિલ્લો", districts)
-    talukas = loc_df[(loc_df['State'] == state) & (loc_df['District'] == district)]['Taluka'].unique().tolist()
-    taluka = l3.selectbox("તાલુકો", talukas)
+    dist_list = ["Select"]
+    if state != "Select": dist_list = list(locations[state].keys())
+    district = l2.selectbox("District", dist_list)
     
-    # --- કેટેગરી સિલેક્શન ---
+    tal_list = ["Select"]
+    if district != "Select": tal_list = locations[state][district]
+    taluka = l3.selectbox("Taluka", tal_list)
+    
+    # Category Selection
     c1, c2 = st.columns(2)
-    main_options = ["Select"] + df['Main Category'].dropna().unique().tolist()
-    main_cat = c1.selectbox("Main Category", main_options)
-    
-    sub_cats = []
-    if main_cat != "Select":
-        sub_cats = df[df['Main Category'] == main_cat]['Sub Category'].dropna().unique().tolist()
-    sub_cat = c2.selectbox("Sub Category", ["Select"] + sub_cats)
-    
-    # --- સર્ચ લોજિક (આ સૌથી મહત્વનું છે) ---
-    if st.button("સર્ચ કરો"):
-        # ફિલ્ટરિંગ: મેઈન કેટેગરી, સબ કેટેગરી અને લોકેશન (City) ત્રણેય મેચ થવા જોઈએ
-        filtered_df = df[
-            (df['Main Category'] == main_cat) & 
-            (df['Sub Category'] == sub_cat) &
-            (df['City'].str.strip() == taluka.strip()) # અહીં આપણે તાલુકાને સીટી સાથે મેચ કરીએ છીએ
-        ]
-        
-        if not filtered_df.empty:
-            st.dataframe(filtered_df, use_container_width=True)
-        else:
-            st.warning(f"{taluka} માં આ કેટેગરીનો કોઈ ડેટા મળ્યો નથી.")
+    main_cat = c1.selectbox("Category", ["Select"] + df['Main Category'].dropna().unique().tolist())
+    sub_cat = c2.selectbox("Sub Category", ["Select"] + df[df['Main Category'] == main_cat]['Sub Category'].dropna().unique().tolist() if main_cat != "Select" else [])
+
+    if st.button("Search"):
+        st.write("Results for: " + taluka)
+        # Search logic...
+else:
+    st.error("Data file mali nathi!")

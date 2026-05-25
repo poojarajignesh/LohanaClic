@@ -1,34 +1,52 @@
 import streamlit as st
+import pandas as pd
 
-st.header("📋 Lohana Samaj Databank Registration")
+# ૧. પેજ સેટઅપ
+st.set_page_config(page_title="Lohana Clic", page_icon="🚩")
 
-with st.form("main_form"):
-    # Personal Info
-    st.subheader("Personal Information")
-    name = st.text_input("Puru Naam")
-    dob = st.date_input("Janm Tarikh")
-    education = st.text_input("Shikshan (Education)")
-    
-    # Contact
-    st.subheader("Contact Details")
-    mobile = st.text_input("Mobile Number")
-    whatsapp = st.text_input("WhatsApp Number")
-    address = st.text_area("Address")
-    
-    # Professional
-    st.subheader("Business / Service Details")
-    occupation = st.text_input("Vyavsay / Job Profile")
-    business_name = st.text_input("Business Name")
-    
-    # Matrimony/Blood Group
-    col1, col2 = st.columns(2)
-    with col1:
-        blood_group = st.selectbox("Blood Group", ["A+", "B+", "AB+", "O+", "A-", "B-", "AB-", "O-"])
-    with col2:
-        marital_status = st.selectbox("Marital Status", ["Unmarried", "Married"])
-    
-    submit = st.form_submit_button("Submit Data")
+# ૨. લોગો અને ટાઇટલ
+st.image("logo.png", width=150)
+st.title("🚩 લોહાણા ક્લિક (Lohana Clic)")
+st.subheader("તમારા સમાજની, તમારી આંગળીએ")
 
-    if submit:
-        # Aahi tame Google Sheet ma data mokalvano code muki shaksho
-        st.success("Tari vigat sachalai gai che!")
+# ૩. ડેટા લોડિંગ
+SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR0PbPYpqGEfCH3hpyN95F5Mv7UGOYnaokIpqphhO7RCesuqXjDjW8B6h3PjqTRPqQXI5qi8O6gRWlN/pub?gid=0&single=true&output=csv"
+
+@st.cache_data
+def load_data():
+    return pd.read_csv(SHEET_URL)
+
+df = load_data()
+df.columns = df.columns.str.strip()
+
+# ૪. મુખ્ય ફીચર્સ (Sidebar)
+menu = st.sidebar.radio("મેનુ પસંદ કરો", ["સભ્ય ડિરેક્ટરી", "સભ્ય રજીસ્ટ્રેશન"])
+
+if menu == "સભ્ય ડિરેક્ટરી":
+    st.subheader("🔍 તમારી ફેમિલીની વિગત શોધો")
+    family_code = st.text_input("તમારો ફેમિલી કોડ દાખલ કરો:")
+    
+    if family_code:
+        filtered_df = df[df['Family_Code'].astype(str) == family_code]
+        if not filtered_df.empty:
+            st.dataframe(filtered_df)
+        else:
+            st.warning("આ કોડ સાથે કોઈ ડેટા મળ્યો નથી.")
+
+elif menu == "સભ્ય રજીસ્ટ્રેશન":
+    st.subheader("📝 નવું સભ્ય રજીસ્ટ્રેશન")
+    with st.form("reg_form"):
+        col1, col2 = st.columns(2)
+        with col1:
+            name = st.text_input("પૂરું નામ")
+            mobile = st.text_input("મોબાઈલ નંબર")
+            dob = st.date_input("જન્મ તારીખ")
+        with col2:
+            blood_group = st.selectbox("બ્લડ ગ્રુપ", ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"])
+            city = st.text_input("શહેર")
+            family_code = st.text_input("ફેમિલી આઈડી (કોમન કોડ)")
+        
+        submit = st.form_submit_button("માહિતી સબમિટ કરો")
+        if submit:
+            st.success(f"આભાર {name}! તમારી વિગત નોંધાઈ ગઈ છે.")
+            # અહીં ડેટા શીટમાં મોકલવા માટેનું લોજિક આવશે (આગળના સ્ટેપમાં કરીશું)

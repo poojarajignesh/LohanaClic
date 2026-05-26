@@ -25,9 +25,8 @@ def load_data():
 try:
     df = load_data()
 
-    # 4. Centered Logo (Text removed)
-    col_l1, col_l2, col_l3 = st.columns([1, 2, 1])
-    with col_l2:
+  col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
         st.image("logo.png", width=300)
 
     # 5. Search Interface

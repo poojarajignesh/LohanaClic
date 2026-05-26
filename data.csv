@@ -1,0 +1,610 @@
+Main Category,Sub Category,City
+Autocare,Car Repair,City
+Autocare,Car Tyres,City
+Autocare,Car Batteries,City
+Autocare,Car Accessories,City
+Autocare,Car Wash,City
+Autocare,Motorcycle Repair,City
+Autocare,Scooter Repair,City
+Autocare,Two Wheeler Tyres,City
+Autocare,Two Wheeler Batteries,City
+Autocare,Two Wheeler Accessories,City
+Automobile,New Cars,City
+Automobile,Used Cars,City
+Automobile,Sell Cars,City
+Automobile,Explore more,City
+Automobile,Aircraft,City
+Automobile,Aircraft Repair Services,City
+Automobile,Automobile Customization Services,City
+Automobile,Automobile Oil,City
+Automobile,Aviation Services,City
+Automobile,Boat,City
+Automobile,CNG Filling Stations,City
+Automobile,Car Accessories,City
+Automobile,Car Denting Services,City
+Automobile,Car Insurance,City
+Automobile,Car Loans,City
+Automobile,Car Part,City
+Automobile,Car Repair,City
+Automobile,Car Tyres,City
+Automobile,Car Upholstery,City
+Automobile,Car Wash,City
+Automobile,Electric Vehicle Charging Stations,City
+Automobile,Golf Cart,City
+Automobile,Motor Training Institutes,City
+Automobile,Motorcycle,City
+Automobile,Motorcycle Repair,City
+Automobile,New Cars,City
+Automobile,PUC Centres,City
+Automobile,RTO Consultants,City
+Automobile,Second Hand Car,City
+Automobile,Second Hand Car Buyers,City
+Automobile,Sell Cars,City
+Automobile,Towing Services,City
+Automobile,Trailer,City
+Automobile,Trailer Repair Services,City
+Automobile,Trailers On Hire,City
+Automobile,Truck Repair Services,City
+Automobile,Trucks,City
+Automobile,Trucks On Hire,City
+Automobile,Two Wheeler Accessories,City
+Automobile,Two Wheeler Insurance,City
+Automobile,Used Cars,City
+Automobile,Valet Parking Services,City
+Automobile,Vehicle Wrapping Services,City
+Automobile,Vehicles Transporters,City
+Automobile,Wheel Rim Repair Services,City
+Baby Care,Baby Food,City
+Baby Care,Baby Sitters,City
+Baby Care,Baby Sleep,City
+Baby Care,Bath,City
+Baby Care,Books,City
+Baby Care,Clothes,City
+Baby Care,Creams,City
+Baby Care,Diapers,City
+Baby Care,Footwear,City
+Baby Care,Grooming,City
+Baby Care,Safety,City
+Baby Care,Toys,City
+Baby Care,Health,City
+Banquets,All Banquet Halls,City
+Banquets,5 Star Banquet Halls,City
+Banquets,AC Banquet Halls,City
+Banquets,Lawn For Events,City
+Banquets,Non AC Banquet Halls,City
+Caterers,Birthday Party Caterers,City
+Caterers,Party Caterers,City
+Caterers,Wedding Caterers,City
+Caterers,Office Caterers,City
+Caterers,Wedding Caterers,City
+Contractor,Carpentry Contractors,City
+Contractor,Civil Contractors,City
+Contractor,Electrical Contractors,City
+Contractor,Flooring Contractors,City
+Contractor,Furniture Contractors,City
+Contractor,Painting Contractors,City
+Contractor,Plumbing Contractors,City
+Courier,International,City
+Courier,Local,City
+Courier,National,City
+Courier,Bulk Courier,City
+Grocery,Bakery,City
+Grocery,Dairy Products,City
+Grocery,Cakes,City
+Grocery,Ice-Creams,City
+Dance / Music Class,Dance Classes,City
+Dance / Music Class,Bollywood,City
+Dance / Music Class,Classical Dance,City
+Dance / Music Class,Hip Hop,City
+Dance / Music Class,Salsa,City
+Dance / Music Class,Music Classes,City
+Dance / Music Class,All Music Classes,City
+Dance / Music Class,Instrument Music Classes,City
+Dance / Music Class,Vocal Music Classes,City
+Dance / Music Class,Western Music Classes,City
+Doctors / Hospitals,Ayurvedic Doctors,City
+Doctors / Hospitals,Bone & Joints Doctors,City
+Doctors / Hospitals,Cardiologists,City
+Doctors / Hospitals,Chest Specialists,City
+Doctors / Hospitals,Child Specialist Doctors,City
+Doctors / Hospitals,Cosmetic Surgeons,City
+Doctors / Hospitals,Dentists,City
+Doctors / Hospitals,Dermatologists,City
+Doctors / Hospitals,Diabetologists,City
+Doctors / Hospitals,Dietitians,City
+Doctors / Hospitals,ENT Specialists,City
+Doctors / Hospitals,Eye Specialists,City
+Doctors / Hospitals,Gastroenterologists,City
+Doctors / Hospitals,General Physicians,City
+Doctors / Hospitals,Gynaecologists & Obstetricians,City
+Doctors / Hospitals,Homeopathic Doctors,City
+Doctors / Hospitals,Neonatologists,City
+Doctors / Hospitals,Neurologists,City
+Doctors / Hospitals,Neurosurgeons,City
+Doctors / Hospitals,On Call Doctors,City
+Doctors / Hospitals,Oncologists,City
+Doctors / Hospitals,Ophthalmologists,City
+Doctors / Hospitals,Orthopaedic Doctors,City
+Doctors / Hospitals,Paediatricians,City
+Doctors / Hospitals,Physiotherapists,City
+Doctors / Hospitals,Physiotherapists For Home Visit,City
+Doctors / Hospitals,Piles Doctors,City
+Doctors / Hospitals,Psychiatrists,City
+Doctors / Hospitals,Psychologists,City
+Doctors / Hospitals,Sexologists,City
+Doctors / Hospitals,Skin & Hair Doctors,City
+Doctors / Hospitals,Skin Doctors,City
+Doctors / Hospitals,Speech Therapists,City
+Doctors / Hospitals,Thyroid Doctors,City
+Doctors / Hospitals,Trichologists,City
+Doctors / Hospitals,Unani Doctors,City
+Doctors / Hospitals,Urologists,City
+Doctors / Hospitals,Veterinary Doctors,City
+Doctors / Hospitals,Acupressure Doctors,City
+Doctors / Hospitals,Acupressure Therapists,City
+Doctors / Hospitals,Acupressure Therapists For Home Visit,City
+Doctors / Hospitals,Acupuncture Doctors,City
+Doctors / Hospitals,Acupuncture Therapists,City
+Doctors / Hospitals,Alcohol De-Addiction,City
+Doctors / Hospitals,Allopathic Doctors,City
+Doctors / Hospitals,Andrologists,City
+Doctors / Hospitals,Appendix Doctors,City
+Doctors / Hospitals,Audiologists,City
+Doctors / Hospitals,Ayurvedic Doctors,City
+Doctors / Hospitals,Ayurvedic Doctors For Hair Fall Treatment,City
+Doctors / Hospitals,Ayurvedic Doctors For Piles Treatment,City
+Doctors / Hospitals,Ayurvedic Doctors For Skin Treatment,City
+Doctors / Hospitals,Ayurvedic Sexologists,City
+Doctors / Hospitals,Bariatric Surgeons,City
+Doctors / Hospitals,Bone & Joints Doctors,City
+Doctors / Hospitals,Breast Specialists,City
+Doctors / Hospitals,Cardiac Surgeons,City
+Doctors / Hospitals,Cardiologists,City
+Doctors / Hospitals,Chest Specialists,City
+Doctors / Hospitals,Child Specialist Doctors,City
+Doctors / Hospitals,Chiropractors,City
+Doctors / Hospitals,Clinical Nutritionists,City
+Doctors / Hospitals,Clinical Psychologists,City
+Doctors / Hospitals,Cosmetic Surgeons,City
+Doctors / Hospitals,Cosmetologists,City
+Doctors / Hospitals,Dental Surgeons,City
+Doctors / Hospitals,Dentists,City
+Doctors / Hospitals,Dermatologists,City
+Doctors / Hospitals,Dermatosurgeons,City
+Doctors / Hospitals,Diabetologists,City
+Doctors / Hospitals,Dietitians,City
+Doctors / Hospitals,Doctors Available 24 Hours On Phone,City
+Doctors / Hospitals,Doctors For Mental Illness,City
+Doctors / Hospitals,Doctors for Allergy,City
+Doctors / Hospitals,Doctors for Arthritis Treatment,City
+Doctors / Hospitals,Doctors for Asthma Treatment,City
+Doctors / Hospitals,Doctors for Breast Cancer Treatment,City
+Doctors / Hospitals,Doctors for Breast Enlargement,City
+Doctors / Hospitals,Doctors for Breast Implant,City
+Doctors / Hospitals,Doctors for Burn Surgery,City
+Doctors / Hospitals,Doctors for Cataract Operation,City
+Doctors / Hospitals,Doctors for Colonoscopy,City
+Doctors / Hospitals,Doctors for Gallstone Removal,City
+Doctors / Hospitals,Doctors for HIV Aids Treatment,City
+Doctors / Hospitals,Doctors for Hair Loss Treatment,City
+Doctors / Hospitals,Doctors for Hernia,City
+Doctors / Hospitals,Doctors for Jaundice,City
+Doctors / Hospitals,Doctors for Kidney Stone Laser Surgery,City
+Doctors / Hospitals,Doctors for Kidney Transplant,City
+Doctors / Hospitals,Doctors for Laser Eye Surgery,City
+Doctors / Hospitals,Doctors for Neck Surgery,City
+Doctors / Hospitals,Doctors for Pain Relief,City
+Doctors / Hospitals,Doctors for Paralysis Treatment,City
+Doctors / Hospitals,Doctors for Respiratory Disease,City
+Doctors / Hospitals,Doctors for Tuberculosis Treatment,City
+Doctors / Hospitals,Doctors for Varicose Veins Treatment,City
+Doctors / Hospitals,Doctors for Weight Loss,City
+Doctors / Hospitals,Drug De-Addiction Centre,City
+Doctors / Hospitals,ENT Specialists,City
+Doctors / Hospitals,ENT Surgeons,City
+Doctors / Hospitals,Endocrinologists,City
+Doctors / Hospitals,Endoscopists,City
+Doctors / Hospitals,Eye Specialists,City
+Doctors / Hospitals,Eye Surgeons,City
+Doctors / Hospitals,Fistula Surgeons,City
+Doctors / Hospitals,Gastroenterologists,City
+Doctors / Hospitals,Gastrointestinal Surgeons,City
+Doctors / Hospitals,General Physicians,City
+Doctors / Hospitals,General Surgeons,City
+Doctors / Hospitals,Gynaecologic Oncologists,City
+Doctors / Hospitals,Gynaecologists & Obstetricians,City
+Doctors / Hospitals,Hair Transplant Surgeons,City
+Doctors / Hospitals,Hearing Care Clinics,City
+Doctors / Hospitals,Height Specialists,City
+Doctors / Hospitals,Hematologists,City
+Doctors / Hospitals,Hepatitis Doctors,City
+Doctors / Hospitals,Hepatologists,City
+Doctors / Hospitals,Hernia Surgeons,City
+Doctors / Hospitals,Homeopathic Doctors,City
+Doctors / Hospitals,Homeopathic Doctors For Skin Treatment,City
+Doctors / Hospitals,Hypnotherapists,City
+Doctors / Hospitals,Infertility Doctors,City
+Doctors / Hospitals,Knee Replacement Surgeons,City
+Doctors / Hospitals,LIC Panel Doctors,City
+Doctors / Hospitals,Laparoscopic Surgeons,City
+Doctors / Hospitals,Lasik Eye Surgeons,City
+Doctors / Hospitals,Liposuction Doctors,City
+Doctors / Hospitals,Migraine Therapists,City
+Doctors / Hospitals,Naturopathic Doctors,City
+Doctors / Hospitals,Neonatologists,City
+Doctors / Hospitals,Nephrologists,City
+Doctors / Hospitals,Neuro Physicians,City
+Doctors / Hospitals,Neurologists,City
+Doctors / Hospitals,Neurosurgeons,City
+Doctors / Hospitals,Occupational Therapists,City
+Doctors / Hospitals,On Call Doctors,City
+Doctors / Hospitals,On Call Gynaecologists,City
+Doctors / Hospitals,On Call Paediatricians,City
+Doctors / Hospitals,On Call Veterinary Doctors,City
+Doctors / Hospitals,Oncologist Surgeons,City
+Doctors / Hospitals,Oncologists,City
+Doctors / Hospitals,Online Doctors,City
+Doctors / Hospitals,Ophthalmologists,City
+Doctors / Hospitals,Oral Oncologists,City
+Doctors / Hospitals,Orthodontists,City
+Doctors / Hospitals,Orthopaedic Doctors,City
+Doctors / Hospitals,Paediatric Cardiologists,City
+Doctors / Hospitals,Paediatric Dermatologists,City
+Doctors / Hospitals,Paediatric ENT Specialists,City
+Doctors / Hospitals,Paediatric Gastroenterologists,City
+Doctors / Hospitals,Paediatric Neurologists,City
+Doctors / Hospitals,Paediatric Ophthalmologists,City
+Doctors / Hospitals,Paediatric Orthopaedics,City
+Doctors / Hospitals,Paediatric Physiotherapists,City
+Doctors / Hospitals,Paediatric Psychiatrists,City
+Doctors / Hospitals,Paediatric Surgeons,City
+Doctors / Hospitals,Paediatricians,City
+Doctors / Hospitals,Paedodontists,City
+Doctors / Hospitals,Pathologists,City
+Doctors / Hospitals,Peripheral Nerve Surgeons,City
+Doctors / Hospitals,Physiotherapists,City
+Doctors / Hospitals,Physiotherapists For Home Visit,City
+Doctors / Hospitals,Piles Doctors,City
+Doctors / Hospitals,Podiatrists,City
+Doctors / Hospitals,Psychiatrists,City
+Doctors / Hospitals,Psychiatrists For Home Visit,City
+Doctors / Hospitals,Psychologists,City
+Doctors / Hospitals,Psychologists For Children,City
+Doctors / Hospitals,Psychotherapists,City
+Doctors / Hospitals,Radiologists,City
+Doctors / Hospitals,Rheumatologists,City
+Doctors / Hospitals,Sexologists,City
+Doctors / Hospitals,Sexologists For Female,City
+Doctors / Hospitals,Sexologists For Male,City
+Doctors / Hospitals,Skin & Hair Doctors,City
+Doctors / Hospitals,Skin Doctors,City
+Doctors / Hospitals,Somnologists,City
+Doctors / Hospitals,Sonologists,City
+Doctors / Hospitals,Speech Therapists,City
+Doctors / Hospitals,Spine Surgeons,City
+Doctors / Hospitals,Stem Cell Therapists,City
+Doctors / Hospitals,Therapists,City
+Doctors / Hospitals,Thyroid Doctors,City
+Doctors / Hospitals,Trichologists,City
+Doctors / Hospitals,Ultrasonologists,City
+Doctors / Hospitals,Unani Doctors,City
+Doctors / Hospitals,Urologists,City
+Doctors / Hospitals,Vascular Surgeons,City
+Doctors / Hospitals,Veterinary Doctors,City
+Education,Schools,City
+Education,Colleges,City
+Education,Acting Classes,City
+Education,Art & Craft Classes,City
+Education,Coaching Classes & Tutorials,City
+Education,Language Classes,City
+Education,Music Classes,City
+Education,Painting Classes,City
+Education,Photography Classes,City
+Education,Soft Skill & Image Building,City
+Education,Training Institutes,City
+Event Organizers,Corporate Parties,City
+Event Organizers,Private Parties,City
+Event Organizers,Seminar Organizers,City
+Event Organizers,Stage Show Organizers,City
+Event Organizers,Trade Fair Organizers,City
+Event Organizers,Wedding Organizers,City
+Fashion,Mens,City
+Fashion,Womens,City
+Fashion,Childrenwear,City
+Fashion,Mens Accessories,City
+Fashion,Womens Accessories,City
+Fashion,Mens Footwear,City
+Fashion,Womans Footwear,City
+Fitness,Dietitians,City
+Fitness,Fitness Classes,City
+Fitness,Gym,City
+Fitness,Health Equipments,City
+Fitness,Health Food & Supplements,City
+Fitness,Meditation & Relaxation,City
+Fitness,Pilates Studios,City
+Fitness,Reformer Studios,City
+Fitness,Sport Clubs,City
+Fitness,Weight Reduction,City
+Fitness,Yoga Classes,City
+Flower,Florists,City
+Flower,Flower Shops,City
+Flower,Florists Home Delivery,City
+Flower,24 Hours Florists,City
+Flower,Florists For Wedding Decoration,City
+Flower,Florists For Car Decoration,City
+Flower,Chocolate Bouquet Florists,City
+Flower,Chocolate Bouquet Florists,City
+Flower,Customised Florists,City
+Flower,Dry Bouquet Florists,City
+Flower,Florists,City
+Flower,Florists For All India,City
+Flower,Florists For Car Decoration,City
+Flower,Florists For Corporate,City
+Flower,Florists For Event Decoration,City
+Flower,Florists For International,City
+Flower,Florists For Office Decoration,City
+Flower,Florists For Wedding Decoration,City
+Flower,Florists Home Delivery,City
+Flower,Florists With Cake,City
+Flower,Flower Shops,City
+Flower,Internet Websites For Flower Delivery,City
+Flower,Midnight Florists,City
+Home Decor,Furnitures,City
+Home Decor,Furnishing,City
+Home Decor,Lamps & Lighting,City
+Home Decor,Kitchen & Dining,City
+Home Decor,Bath,City
+Home Decor,Housekeeping,City
+Home Improvements,Architects & Engineers,City
+Home Improvements,Carpets,City
+Home Improvements,Floorings,City
+Home Improvements,Insulation,City
+Home Improvements,Modular Kitchens,City
+Home Improvements,Painting,City
+Home Improvements,Roofings,City
+Home Improvements,Swimming Pools,City
+Home Improvements,Tiles,City
+Home Improvements,Wall Claddings,City
+Home Improvements,Wallpapers,City
+Home Improvements,Windows & Doors,City
+Housekeeping,Cooks,City
+Housekeeping,Maids,City
+Housekeeping,Drivers,City
+Housekeeping,Gardeners,City
+Housekeeping,Laundry Services,City
+Housekeeping,Cleaning Services,City
+Housekeeping,Pest Control,City
+Industrial Products,Industrial Parts,City
+Industrial Products,Industrial Tools,City
+Industrial Products,Industry Specific Machines,City
+Industrial Products,Welding Equipments & Machines,City
+Industrial Products,General Industrial Machinary,City
+Industrial Products,Bending & Metalwork Machines,City
+Industrial Products,Casting and Moulding Equipments,City
+Industrial Products,"Crusher, Shredder & Presses",City
+Industrial Products,Drilling & Boring Equipments,City
+Industrial Products,Industrial Hardwares,City
+Industrial Products,Industrial Parts,City
+Industrial Products,Industrial Tools,City
+Industrial Products,Industry Specific Machines,City
+Industrial Products,Instrumentation & Control Equipments,City
+Industrial Products,Milling & Grinding Tools,City
+Industrial Products,Testing & Measuring Equipments,City
+Industrial Products,Welding Equipments & Machines,City
+Architects,Residence,City
+Architects,Commercial,City
+Architects,Interior Decorators,City
+Architects,Interior Furnishing Contractors,City
+Architects,Interior Designer Institutes,City
+Business Utilities,Internet Service Providers,City
+Business Utilities,Web Designers,City
+Business Utilities,Cyber Cafes,City
+Business Utilities,Advertisement Agency,City
+Business Utilities,Graphic Designer,City
+Business Utilities,Printing,City
+Business Utilities,Accountant,City
+Business Utilities,CA,City
+Jewellery,Artificial,City
+Jewellery,Bridal Jewellery,City
+Jewellery,Bangles,City
+Jewellery,Bracelets,City
+Jewellery,Gold Coins,City
+Jewellery,Chains,City
+Jewellery,Earrings,City
+Jewellery,Mangalsutras,City
+Jewellery,Necklaces,City
+Jewellery,Nose Pins,City
+Jewellery,Pendants,City
+Jewellery,Rings,City
+Loans,Home Loans,City
+Loans,Credit Cards,City
+Loans,Personal Loans,City
+Loans,Car Loans,City
+Loans,Business Loans,City
+Loans,Educational Loans,City
+Loans,Loan Against Gold,City
+Loans,Mortgage Loans,City
+Loans,Two Wheeler Loans,City
+On Demand Services,Carpenters,City
+On Demand Services,Carpet Cleaners,City
+On Demand Services,Driver Service,City
+On Demand Services,Duplicate Key Makers,City
+On Demand Services,Electricians,City
+On Demand Services,Masons,City
+On Demand Services,Painters,City
+On Demand Services,Pest Control,City
+On Demand Services,Plumbers,City
+On Demand Services,Towing Services,City
+On Demand Services,Carpet Contractors,City
+On Demand Services,Electric Chimney,City
+On Demand Services,Fire Fighting Contractors,City
+On Demand Services,Flooring Contractors,City
+On Demand Services,Civil Contractors,City
+On Demand Services,Gardening Tools Services,City
+On Demand Services,House Keeping Cleaning,City
+On Demand Services,Interior Designers Architecture,City
+On Demand Services,Interior Decorators,City
+On Demand Services,Internet Service Providers,City
+On Demand Services,Lock Repair Services,City
+On Demand Services,Architects,City
+On Demand Services,Packaging Labelling,City
+On Demand Services,Swimming Contractors,City
+On Demand Services,Painting Contractors,City
+On Demand Services,Roofing Contractors,City
+On Demand Services,Security Equipment Services,City
+On Demand Services,DTH,City
+On Demand Services,Wall Paper Contractors,City
+On Demand Services,Water Proofing Contractors,City
+Packers & Movers,Local,City
+Packers & Movers,National,City
+Packers & Movers,International,City
+Packers & Movers,Movers For Automobile,City
+Packers & Movers,Transporters,City
+Packers & Movers,Movers For Commercial,City
+Party,Banquet Halls,City
+Party,Bouncer Services,City
+Party,Costumes,City
+Party,DJ on Hire,City
+Party,Dance Groups,City
+Party,Decorators,City
+Party,Event Organisers,City
+Party,Firecrackers,City
+Party,Fireworks,City
+Party,Florists,City
+Party,Generator & Power Backup,City
+Party,Guest Houses,City
+Party,Ice Cube Dealers,City
+Party,Invitation Cards,City
+Party,Juice Services,City
+Party,Kids Entertainment,City
+Party,Mascots,City
+Party,Milkshakes,City
+Party,Orchestra Bands,City
+Party,Party Organisers For Children,City
+Party,Party Poppers,City
+Party,Photographers,City
+Party,Playback Singers,City
+Party,Sound System On Hire,City
+Party,Sweet Shops,City
+Party,Tent House,City
+Personal Care,Beauty Parlours,City
+Personal Care,Beauty Services,City
+Personal Care,Bridal Makeup,City
+Personal Care,Bridegroom Makeup,City
+Personal Care,Salons,City
+Personal Care,Spas,City
+Pest Control,Commercial Pest Control,City
+Pest Control,Residential Pest Control,City
+Pest Control,Explore more A to Z,City
+Pest Control,Ant Control,City
+Pest Control,Bird Control,City
+Pest Control,Cockroach Control,City
+Pest Control,Commercial Pest Control,City
+Pest Control,Fly Control,City
+Pest Control,Lizard Control,City
+Pest Control,Mosquito Control,City
+Pest Control,Pest Control,City
+Pest Control,Rat Control,City
+Pest Control,Residential Pest Control,City
+Pest Control,Rodent Control,City
+Pest Control,Spider Control,City
+Pest Control,Termite Control,City
+Pest Control,Wasp & Bee Control,City
+Pest Control,Woodborer Control,City
+Pet,Pet Accessories,City
+Pet,Pet Food,City
+Pet,Pet Shops,City
+Pet,Veterinary Doctors,City
+Play School,Kindergarten,City
+Play School,Montessori Schools,City
+Play School,Play Schools,City
+Play School,Pre-School,City
+Repairs,AC,City
+Repairs,Air Cooler,City
+Repairs,CCTV Camera,City
+Repairs,Camera,City
+Repairs,Car,City
+Repairs,Car AC,City
+Repairs,Computer,City
+Repairs,Computer Hardware,City
+Repairs,Computer Printer,City
+Repairs,DVD Player,City
+Repairs,Electric Chimney,City
+Repairs,Elevator,City
+Repairs,Gas Stove,City
+Repairs,Generator,City
+Repairs,Geyser,City
+Repairs,Home Theatre,City
+Repairs,Inverter,City
+Repairs,Laptop,City
+Repairs,Microwave Oven,City
+Repairs,Mobile Phone,City
+Repairs,Motorcycle,City
+Repairs,Projector,City
+Repairs,Refrigerator,City
+Repairs,Ro Water Purifier,City
+Repairs,Scooter,City
+Repairs,Sewing Machine,City
+Repairs,Sofa Set,City
+Repairs,TV,City
+Repairs,Tablet,City
+Repairs,Treadmill,City
+Repairs,UPS,City
+Repairs,Washing Machine,City
+Repairs,Water Purifier,City
+Repairs,Wrist Watch,City
+Restaurant,Dhaba,City
+Restaurant,Gujarati,City
+Restaurant,Gujarati Thali,City
+Restaurant,Jain,City
+Restaurant,Kathiyawadi,City
+Restaurant,Mughlai,City
+Restaurant,North Indian,City
+Restaurant,Punjabi,City
+Restaurant,Pure Veg,City
+Restaurant,South Indian,City
+Security Services,Bodyguards,City
+Security Services,CCTV Cameras,City
+Security Services,Hire Detectives,City
+Security Services,Lock,City
+Security Services,Lock Repair & Services,City
+Security Services,Security Services,City
+Security Services,Valet Parking Services,City
+Security Services,Walkie Talkie Dealers,City
+Sports Coach / Goods,Athletics,City
+Sports Coach / Goods,Badminton,City
+Sports Coach / Goods,Basketball,City
+Sports Coach / Goods,Boxing,City
+Sports Coach / Goods,Chess,City
+Sports Coach / Goods,Cricket,City
+Sports Coach / Goods,Football,City
+Sports Coach / Goods,Gymnastic,City
+Sports Coach / Goods,Hockey,City
+Sports Coach / Goods,Judo,City
+Sports Coach / Goods,Kabbadi,City
+Sports Coach / Goods,Karate,City
+Sports Coach / Goods,Skating,City
+Sports Coach / Goods,Squash,City
+Sports Coach / Goods,Swimming,City
+Sports Coach / Goods,Table Tennis,City
+Sports Coach / Goods,Tennis,City
+Sports Coach / Goods,Volleyball,City
+Training Institute,Administration Training,City
+Training Institute,Basic Computing,City
+Training Institute,Computer Hardware Training,City
+Training Institute,Computer Networking Training,City
+Training Institute,Database Training,City
+Training Institute,Engineering Design Training,City
+Training Institute,Mobile Development Training,City
+Training Institute,Multimedia & Design Training,City
+Training Institute,Programming Languages,City
+Transporters,Animal Transporters,City
+Transporters,Antiques & Special Care Items,City
+Transporters,Business & Industrial Goods,City
+Transporters,Food & Agriculture Products,City
+Transporters,Full Container Load Freight,City
+Transporters,Household Goods,City
+Transporters,Junk Transporters,City
+Transporters,Low Container Load Freight,City
+Transporters,Plants & Heavy Equipments,City
+Transporters,Vehicles Transporters,City

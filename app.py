@@ -4,64 +4,67 @@ import pandas as pd
 # ૧. પેજ સેટઅપ
 st.set_page_config(page_title="Lohana Clic", layout="wide")
 
-# ૨. ડેટા લોડિંગ
+# ૨. ફોટા જેવી ડિઝાઇન (CSS)
+st.markdown("""
+    <style>
+    .big-title { text-align: center; font-size: 50px; color: #ff8200; font-weight: 800; margin-bottom: 20px; }
+    .search-box { background: #ffffff; padding: 30px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid #ddd; }
+    .business-card { padding: 20px; border-radius: 15px; border: 1px solid #e0e0e0; background: white; margin-bottom: 15px; transition: 0.3s; }
+    .business-card:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+    </style>
+""", unsafe_allow_html=True)
+
+# ૩. ડેટા લોડિંગ
 @st.cache_data
 def load_data():
     df = pd.read_csv("data.csv")
     df.columns = df.columns.str.strip()
-    
-    # ખાલી જગ્યામાં 'Other' ભરી દો જેથી NaN ન આવે
-    df['Main Category'] = df['Main Category'].fillna('Other')
-    df['Sub Category'] = df['Sub Category'].fillna('Other')
+    df.fillna("N/A", inplace=True)
     return df
 
 df = load_data()
 
-st.markdown("<h1 style='text-align: center; color: #ff8200;'>Lohana Clic</h1>", unsafe_allow_html=True)
+# ૪. હેડર
+st.markdown("<h1 class='big-title'>Lohana Clic</h1>", unsafe_allow_html=True)
 
-# ૩. ફિક્સ Category ફિલ્ટર
-st.subheader("📂 Filter by Category")
-col1, col2 = st.columns(2)
+# ૫. વચ્ચેનું સર્ચ બોક્સ
+with st.container():
+    st.markdown("<div class='search-box'>", unsafe_allow_html=True)
+    c1, c2, c3 = st.columns(3)
+    
+    # Category Selection
+    main_options = ["All"] + sorted(df['Main Category'].unique().tolist())
+    main_cat = c1.selectbox("Main Category", main_options)
+    
+    sub_cat_list = df[df['Main Category'] == main_cat]['Sub Category'].unique().tolist() if main_cat != "All" else df['Sub Category'].unique().tolist()
+    sub_cat = c2.selectbox("Sub Category", ["All"] + sorted(sub_cat_list))
+    
+    # Location Search
+    search_input = c3.text_input("Enter City or Pincode")
+    
+    search_btn = st.button("🔍 Search Business")
+    st.markdown("</div>", unsafe_allow_html=True)
 
-# Main Category
-main_options = ["All"] + sorted(df['Main Category'].unique().tolist())
-main_cat = col1.selectbox("Main Category", main_options)
+# ૬. રિઝલ્ટ કાર્ડ્સ (જે ફોટામાં છે)
+if search_btn:
+    filtered_df = df.copy()
+    if main_cat != "All": filtered_df = filtered_df[filtered_df['Main Category'] == main_cat]
+    if sub_cat != "All": filtered_df = filtered_df[filtered_df['Sub Category'] == sub_cat]
+    if search_input:
+        if search_input.isdigit():
+            filtered_df = filtered_df[filtered_df['Pincode'].astype(str).str.contains(search_input, na=False)]
+        else:
+            filtered_df = filtered_df[filtered_df['City'].str.contains(search_input, case=False, na=False)]
 
-# Sub Category (Main Category મુજબ બદલાશે)
-if main_cat == "All":
-    sub_options = ["All"] + sorted(df['Sub Category'].unique().tolist())
-else:
-    # ફક્ત તે મેઈન કેટેગરીની અંદરની જ સબ-કેટેગરી બતાવશે
-    sub_options = ["All"] + sorted(df[df['Main Category'] == main_cat]['Sub Category'].unique().tolist())
-
-sub_cat = col2.selectbox("Sub Category", sub_options)
-
-st.write("---")
-
-# ૪. Location/Search વિભાગ
-st.subheader("📍 Search by City or Pincode")
-search_input = st.text_input("Type Pincode or City name...")
-
-# ૫. ફિલ્ટર લોજિક (Category + Location)
-filtered_df = df.copy()
-
-if main_cat != "All":
-    filtered_df = filtered_df[filtered_df['Main Category'] == main_cat]
-if sub_cat != "All":
-    filtered_df = filtered_df[filtered_df['Sub Category'] == sub_cat]
-
-if search_input:
-    if search_input.isdigit():
-        filtered_df = filtered_df[filtered_df['Pincode'].astype(str).str.contains(search_input, na=False)]
+    if not filtered_df.empty:
+        st.write(f"### Found {len(filtered_df)} results:")
+        for _, row in filtered_df.iterrows():
+            # બિઝનેસ કાર્ડ ડિઝાઇન
+            st.markdown(f"""
+                <div class='business-card'>
+                    <h3>{row['Sub Category']}</h3>
+                    <p><b>📍 City:</b> {row['City']} | <b>Category:</b> {row['Main Category']}</p>
+                </div>
+            """, unsafe_allow_html=True)
     else:
-        filtered_df = filtered_df[filtered_df['City'].str.contains(search_input, case=False, na=False)]
-
-# રિઝલ્ટ
-if not filtered_df.empty:
-    st.write(f"### Found {len(filtered_df)} results:")
-    for _, row in filtered_df.iterrows():
-        with st.container(border=True):
-            st.write(f"**Business:** {row['Sub Category']}")
-            st.write(f"**City:** {row['City']} | **Main:** {row['Main Category']}")
-else:
-    st.info("No business found matching these criteria.")
+        st.info("No results found. Please adjust your search.")

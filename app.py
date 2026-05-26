@@ -1,19 +1,20 @@
 import streamlit as st
 import pandas as pd
 
-# ૧. પેજ સેટઅપ
+# 1. Page Config
 st.set_page_config(page_title="Lohana Clic", layout="wide")
 
-# ૨. ડિઝાઇન (CSS)
+# 2. Design (CSS - No text title, centered logo)
 st.markdown("""
     <style>
-    .big-title { text-align: center; font-size: 40px; color: #ff8200; font-weight: 800; margin-bottom: 30px; }
     .business-card { padding: 20px; border-radius: 10px; border: 1px solid #ddd; background: white; margin-bottom: 10px; }
     .business-card h3 { color: #333; margin: 0; }
+    /* Logo centering */
+    .stImage { display: flex; justify-content: center; }
     </style>
 """, unsafe_allow_html=True)
 
-# ૩. ડેટા લોડિંગ
+# 3. Data Loading
 @st.cache_data
 def load_data():
     df = pd.read_csv("data.csv")
@@ -24,11 +25,12 @@ def load_data():
 try:
     df = load_data()
 
-    # ૪. હેડર અને લોગો
-    st.image("logo.png", width=150)
-    st.markdown("<h1 class='big-title'>Lohana Clic</h1>", unsafe_allow_html=True)
+    # 4. Centered Logo (Text removed)
+    col_l1, col_l2, col_l3 = st.columns([1, 2, 1])
+    with col_l2:
+        st.image("logo.png", width=300)
 
-    # ૫. સર્ચ ઈન્ટરફેસ (બોક્સ વગરનું)
+    # 5. Search Interface
     c1, c2, c3 = st.columns(3)
     
     main_options = ["Select"] + sorted(df['Main Category'].unique().tolist())
@@ -44,7 +46,7 @@ try:
     
     search_btn = st.button("🔍 Search Business")
 
-    # ૬. રિઝલ્ટ લોજિક
+    # 6. Results Logic
     if search_btn:
         if main_cat == "Select" or sub_cat == "Select":
             st.error("Please select Category and Sub-category!")
@@ -69,4 +71,4 @@ try:
                 st.warning("No results found.")
 
 except Exception as e:
-    st.error("Please upload your data.csv and logo.png files.")
+    st.error("Please ensure 'data.csv' and 'logo.png' are in your folder.")

@@ -1,20 +1,21 @@
 import streamlit as st
 import pandas as pd
 
-# 1. Page Config
+# ૧. પેજ સેટઅપ
 st.set_page_config(page_title="Lohana Clic", layout="wide")
 
-# 2. Design (CSS - No text title, centered logo)
+# ૨. ડિઝાઇન અને સ્ટાઈલિંગ
 st.markdown("""
     <style>
+    .big-title { text-align: center; font-size: 40px; color: #ff8200; font-weight: 800; margin-bottom: 30px; }
     .business-card { padding: 20px; border-radius: 10px; border: 1px solid #ddd; background: white; margin-bottom: 10px; }
     .business-card h3 { color: #333; margin: 0; }
-    /* Logo centering */
-    .stImage { display: flex; justify-content: center; }
+    /* લોગો સેન્ટર કરવા માટે */
+    [data-testid="stImage"] { display: flex; justify-content: center; }
     </style>
 """, unsafe_allow_html=True)
 
-# 3. Data Loading
+# ૩. ડેટા લોડિંગ
 @st.cache_data
 def load_data():
     df = pd.read_csv("data.csv")
@@ -25,27 +26,32 @@ def load_data():
 try:
     df = load_data()
 
-  col1, col2, col3 = st.columns([1, 2, 1])
+    # ૪. સેન્ટર્ડ લોગો
+    col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
         st.image("logo.png", width=300)
 
-    # 5. Search Interface
+    # ૫. સર્ચ ઈન્ટરફેસ
     c1, c2, c3 = st.columns(3)
     
+    # Main Category Selection
     main_options = ["Select"] + sorted(df['Main Category'].unique().tolist())
     main_cat = c1.selectbox("Main Category", main_options)
     
+    # Sub-Category Selection (Main Category પર આધારિત)
     if main_cat != "Select":
         sub_options = sorted(df[df['Main Category'] == main_cat]['Sub Category'].unique().tolist())
     else:
         sub_options = []
         
     sub_cat = c2.selectbox("Sub Category", ["Select"] + sub_options)
+    
+    # Location Search
     city = c3.text_input("Enter City or Pincode")
     
     search_btn = st.button("🔍 Search Business")
 
-    # 6. Results Logic
+    # ૬. રિઝલ્ટ લોજિક
     if search_btn:
         if main_cat == "Select" or sub_cat == "Select":
             st.error("Please select Category and Sub-category!")
